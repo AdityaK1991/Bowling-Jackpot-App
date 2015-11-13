@@ -1,5 +1,5 @@
 # bowling-jackpot-app
-
+Bowling Jackpot App 
 ## Build & development
 
 Run `grunt` for building and `grunt serve` for preview.
