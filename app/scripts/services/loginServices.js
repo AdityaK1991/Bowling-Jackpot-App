@@ -1,12 +1,12 @@
 angular.module('bowlingJackpotApp.services', ['ngResource'])
 
-  .factory('LoginServices', function($resource, TokenHandler, localStorageService, $cookieStore) {
+  .factory('LoginServices', function($resource) {
 
   	var factory = {};
 
   	var baseUrl = 'http://bowling-api.nextcapital.com';
 
-	  var token = "none";
+	 // var token = "none";
 
    //console.log(localStorageService.get('el'));
    // var token = $cookieStore.get('token')
@@ -32,7 +32,7 @@ angular.module('bowlingJackpotApp.services', ['ngResource'])
   		
   	)
 
-    console.log("token:" + TokenHandler.get());
+    //console.log("token:" + TokenHandler.get());
 
 
   	return factory;

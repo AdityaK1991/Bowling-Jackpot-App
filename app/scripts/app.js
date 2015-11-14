@@ -48,6 +48,14 @@ angular
         templateUrl: 'views/forgotPassword.html',
         controller: 'ForgotPasswordCtrl'
       })
+      .when('/home/leagues', {
+        templateUrl: 'views/leagues.html',
+        controller: 'LeaguesCtrl'
+      })
+      .when('/home/bowlers', {
+        templateUrl: 'views/bowlers.html',
+        controller: 'BowlersCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

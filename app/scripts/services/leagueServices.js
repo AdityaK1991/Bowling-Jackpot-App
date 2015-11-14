@@ -2,15 +2,15 @@ angular.module('bowlingJackpotApp.services')
 
   .factory('LeagueServices', function($resource) {
 
-	var factory = {}
+	var factory = {};
 
 	var baseUrl = 'http://bowling-api.nextcapital.com';
 
 	 factory.CreateLeague = $resource(
   		baseUrl + '/api/leagues', 
-  		null, 
+  		{name: '@name'}, 
   		{
-  			'save':    {method:'POST', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'save':    {method:'POST'}
   		}
   		
   	)
@@ -20,7 +20,7 @@ angular.module('bowlingJackpotApp.services')
   		baseUrl + '/api/leagues', 
   		null, 
   		{
-  			'get':    {method:'GET', isArray:true, headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'get':    {method:'GET', isArray:true}
   		}
 	  		
 	)
@@ -30,7 +30,7 @@ angular.module('bowlingJackpotApp.services')
   		baseUrl + '/api/leagues/:leagueId', 
   		null, 
   		{
-  			'get':    {method:'GET', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'get':    {method:'GET'}
   		}
 	  		
 	)
@@ -40,7 +40,7 @@ angular.module('bowlingJackpotApp.services')
 	        baseUrl + '/api/leagues/:leagueId/bowlers', 
 	        null, 
 	        {
-	          'update':    {method:'PUT', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+	          'update':    {method:'PUT'}
 	        }
 	        
 	  )
@@ -50,7 +50,7 @@ angular.module('bowlingJackpotApp.services')
 	      baseUrl + '/api/leagues/:leagueId/bowlers',  
 	      null, 
 	      {
-	        'get':    {method:'GET', isArray:true, headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+	        'get':    {method:'GET', isArray:true}
 	      }
 	        
 	  )
@@ -60,7 +60,7 @@ angular.module('bowlingJackpotApp.services')
 	      baseUrl + '/api/leagues/:leagueId/lotteries',  
 	      null, 
 	      {
-	        'get':    {method:'GET', isArray:true, headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+	        'get':    {method:'GET', isArray:true}
 	      }
 	        
 	  )
@@ -70,7 +70,7 @@ angular.module('bowlingJackpotApp.services')
 	      baseUrl + '/api/leagues/:leagueId/lotteries/lotteryId',  
 	      null, 
 	      {
-	        'get':    {method:'GET', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+	        'get':    {method:'GET'}
 	      }
 	        
 	  )
@@ -80,12 +80,11 @@ angular.module('bowlingJackpotApp.services')
 	      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/roll',  
 	      null, 
 	      {
-	        'update':    {method:'PUT', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+	        'update':    {method:'PUT'}
 	      }
 	        
 	  )
 
 
-
-	return factory
+	return factory;
 })

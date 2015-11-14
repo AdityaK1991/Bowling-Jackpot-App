@@ -1,7 +1,7 @@
 
 angular.module('bowlingJackpotApp.controllers', [])
-  .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', 'localStorageService', '$cookieStore', 
-    function($scope, $location, $http, LoginServices, $timeout, localStorageService, $cookieStore) {
+  .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', 'localStorageService', '$cookies', 
+    function($scope, $location, $http, LoginServices, $timeout, localStorageService, $cookies) {
    
 
   	$scope.submitLogin = function(){
@@ -13,17 +13,15 @@ angular.module('bowlingJackpotApp.controllers', [])
 
   			var encodedLogin = btoa(email + ":" + password);
 
-        $cookieStore.put('token', encodedLogin);
 
         //TokenHandler.set(email, password);
           
        // console.log(TokenHandler.get());    
 
-      localStorageService.set('el', encodedLogin);
+      $cookies.put('Token', encodedLogin)
 
-      console.log(localStorageService.get('el'));
 
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + encodedLogin;
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
        //console.log(localStorageService.get());
 

@@ -2,15 +2,15 @@ angular.module('bowlingJackpotApp.services')
 
   .factory('BowlerServices', function($resource) {
 
-	var factory = {}
+	var factory = {};
 
 	var baseUrl = 'http://bowling-api.nextcapital.com';
 
 	 factory.CreateBowler = $resource(
   		baseUrl + '/api/bowlers', 
-  		null, 
+  		{name: '@name'}, 
   		{
-  			'save':    {method:'POST', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'save':    {method:'POST'}
   		}
   		
   	)
@@ -20,7 +20,7 @@ angular.module('bowlingJackpotApp.services')
   		baseUrl + '/api/bowlers', 
   		null, 
   		{
-  			'get':    {method:'GET', isArray:true, headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'query':    {method:'GET', isArray:true}
   		}
 	  		
 	)
@@ -30,12 +30,12 @@ angular.module('bowlingJackpotApp.services')
   		baseUrl + '/api/bowlers/:bowlerId', 
   		null, 
   		{
-  			'get':    {method:'GET', headers: {'Authorization': 'Basic cm9ja3kxMjM6MTIz' }}
+  			'get':    {method:'GET'}
   		}
 	  		
 	)
 
 
 
-	return factory
+	return factory;
 })

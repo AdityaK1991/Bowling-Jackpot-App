@@ -1,0 +1,43 @@
+<div class="navbar navbar-default" role="navigation">
+<div class="container">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a ng-href="#home">Home</a></li>
+        <li><a ng-href="#home/leagues">Leagues</a></li>
+        <li class="active"><a ng-href="#home/bowlers">Bowlers</a></li>
+        <li><a ng-href="#home">Tickets</a></li>
+      </ul>
+      </div>
+</div>
+
+</div>
+
+<div class="container">
+ <div class="jumbotron">
+
+<div class="row">
+  <div class="col-md-5">
+  	
+  	<form class="form" ng-submit="submitBowler()" accept-charset="UTF-8">
+	 <div class="input-group row-buffer">
+	  <input class="form-control input-lg" ng-model="bname" placeholder="Bowler name" required="required" maxlength="60" type="text">
+	 </div>
+	 <button type="submit" id="btn-signin" class="btn btn-primary">Create Bowler</button>
+ 	</form>
+
+
+  </div>
+
+  <div class="col-md-5">
+	  <form class="form" ng-submit="getBowlers()" accept-charset="UTF-8">
+	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
+	  	 <button type="submit" id="btn-signin" class="btn btn-primary" >Get Bowlers</button>
+	  </form>
+  </div>
+
+</div>
+
+
+
+ </div>
+</div>
