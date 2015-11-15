@@ -1,5 +1,5 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('LeaguesCtrl', function (LServices, $scope, $cookies) {
+  .controller('LeaguesCtrl', function (LServices, $scope, $cookies, $location) {
     
 
     $scope.submitLeague = function(){
@@ -22,11 +22,21 @@ angular.module('bowlingJackpotApp.controllers')
                   	alert("League not created!")
                   }
                 }
-    	)
-
-
+    	   )
 
     }
+
+    $scope.logout = function(){
+
+      $cookies.remove('Token');
+
+      $location.path('/main');
+
+    }
+
+
+
+
 
 		
   })

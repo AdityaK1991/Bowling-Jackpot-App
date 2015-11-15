@@ -1,5 +1,5 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies) {
+  .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies, $location) {
 
 
   	$scope.submitBowler = function(){
@@ -48,9 +48,20 @@ angular.module('bowlingJackpotApp.controllers')
       console.log($cookies.get('Token'));
 
     	$scope.bowlers = BowlerServices.ListBowlers.query({},
+        
         function success(){
           $scope.showSpinnerSearchAll = false;
-        })
+        }),
+
+        function error(e){
+
+          $scope.showSpinnerSearchAll = false;
+
+          if(e.status === 401) 
+          {
+            alert("Unauthorized!")
+          }
+        }
     }
 
 
@@ -71,9 +82,29 @@ angular.module('bowlingJackpotApp.controllers')
     			}
 
     		},
-    		function error(){
+    		function error(e){
+          if(e.status === 401) 
+          {
+
+            $scope.showSpinnerSearch = false;
+
+            alert("Unauthorized!")
+
+          }
 
     		})
     }
+
+
+  $scope.logout = function(){
+
+    $cookies.remove('Token');
+
+    $location.path('/main');
+
+  }
+
+
     
   });
+  
