@@ -88,8 +88,6 @@ body {
 }
 
 
-.glyphicon.spinning {
-    animation: spin 1s infinite linear;
-    -webkit-animation: spin2 1s infinite linear;
+ .well {
+    background: #00000;
 }
-

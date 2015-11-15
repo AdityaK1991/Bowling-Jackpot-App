@@ -1,5 +1,5 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('LeaguesCtrl', function ($scope, $cookies, LeagueServices) {
+  .controller('LeaguesCtrl', function (LServices, $scope, $cookies) {
     
 
     $scope.submitLeague = function(){
@@ -29,4 +29,4 @@ angular.module('bowlingJackpotApp.controllers')
     }
 
 		
-  });
+  })

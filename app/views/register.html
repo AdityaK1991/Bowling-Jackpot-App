@@ -1,28 +1,30 @@
+<div class="container">
 <div class="jumbotron">
   <div class="row"><h2>Register</h2></div>
 
 
 <div class="row">
-      <form class="form" ng-submit="submitRegister()" accept-charset="UTF-8">
-          <div class="input-group row-buffer">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-              <input class="form-control input-lg" ng-model="register.email" placeholder="Email" required="required" maxlength="100" type="email">
-          </div>
+  <form class="form" ng-submit="submitRegister()" accept-charset="UTF-8">
+      <div class="input-group row-buffer">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+          <input class="form-control input-lg" ng-model="register.email" placeholder="Email" required="required" maxlength="100" type="email">
+      </div>
 
-          <div class="input-group row-buffer">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-              <input class="form-control input-lg" id="regPassword" ng-model="register.password" placeholder="Password" required="required" maxlength="60" type="password">
-          </div>
-          <div class="input-group row-buffer">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
-              <input class="form-control input-lg" id="regConfirmPassword" ng-model="register.cpassword" placeholder="Confirm Password" required="required" maxlength="60" type="password">
-          </div>
-          <p ng-show="register.password != register.cpassword" class="help-block">Passwords do not match.</p>
-              <div class="form-group row-buffer">
-              <button type="submit" class="btn btn-block btn-primary" >Register</button>
-          </div>
-      </form>
-    </div>
+      <div class="input-group row-buffer">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+          <input class="form-control input-lg" id="regPassword" ng-model="register.password" placeholder="Password" required="required" maxlength="60" type="password">
+      </div>
+      <div class="input-group row-buffer">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-asterisk"></i></span>
+          <input class="form-control input-lg" id="regConfirmPassword" ng-model="register.cpassword" placeholder="Confirm Password" required="required" maxlength="60" type="password">
+      </div>
+      <p ng-show="register.password != register.cpassword" class="help-block">Passwords do not match.</p>
+          <div class="form-group row-buffer">
+          <button type="submit" class="btn btn-block btn-primary" ng-disabled="register.password != register.cpassword">Register</button>
+      </div>
+      <span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
+  </form>
+</div>
 
 </div>
 
@@ -31,4 +33,5 @@
       <a id="btn-signin" class="btn btn-primary" href="#/main">Sign In</a>
       </h4>
       </p>
+ </div>
  </div>

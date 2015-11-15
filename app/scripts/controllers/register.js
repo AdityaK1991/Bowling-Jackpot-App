@@ -1,7 +1,9 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('RegisterCtrl', ['$scope', 'LoginServices', function ($scope, LoginServices) {
+  .controller('RegisterCtrl', ['$scope', '$location', 'LoginServices', function ($scope, $location, LoginServices) {
    
    $scope.submitRegister = function(){
+
+        $scope.showSpinner = true;
 
   			var regEmail = $scope.register.email;
   			var regPassword = $scope.register.password;
@@ -10,12 +12,17 @@ angular.module('bowlingJackpotApp.controllers')
   			LoginServices.Register.save({email: regEmail, password: regPassword},
           function success() {
 
+            $scope.showSpinner = false;
+            $location.path('/home');
+
           },
 
           function error() {
             
+            $scope.showSpinner = false;
+
           }
-          )
+        )
 
   	}
   }]);

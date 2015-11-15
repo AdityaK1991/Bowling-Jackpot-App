@@ -3,45 +3,51 @@ angular.module('bowlingJackpotApp.controllers', [])
   .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', 'localStorageService', '$cookies', 
     function($scope, $location, $http, LoginServices, $timeout, localStorageService, $cookies) {
    
+    
 
   	$scope.submitLogin = function(){
 
+        $scope.showSpinner = true;
 
   			var email = $scope.login.email;
   			var password = $scope.login.password;
 
-
   			var encodedLogin = btoa(email + ":" + password);
 
 
-        //TokenHandler.set(email, password);
-          
-       // console.log(TokenHandler.get());    
-
-      $cookies.put('Token', encodedLogin)
+          $cookies.put('Token', encodedLogin)
 
 
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
+          $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
-       //console.log(localStorageService.get());
-
-      //LoginServices.setToken(email, password);
        
           $timeout(function () {
+
             LoginServices.Login.save({},
+
                 function success() {
+
+                  $scope.showSpinner=false;
+
                   $location.path('/home')
+                
                 },
 
                 function error(e) {
+
+                  $scope.loading = false;
+
                   if(e.status === 401) {
+
+                    $scope.showSpinner=false;
+
                     alert("Unauthorized!")
+
                   }
                 }
 
               ) 
         }, 1000);
-
 
   	}
 

@@ -28,7 +28,7 @@ angular.module('bowlingJackpotApp.services')
 
 	 factory.GetBowler = $resource(
   		baseUrl + '/api/bowlers/:bowlerId', 
-  		null, 
+  		{bowlerId:'@bowlerId'}, 
   		{
   			'get':    {method:'GET'}
   		}

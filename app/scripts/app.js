@@ -18,6 +18,7 @@ angular
     'ngResource',
     'ngTouch',
     'LocalStorageModule',
+    'angularSpinner',
     'bowlingJackpotApp.controllers',
     'bowlingJackpotApp.services'
   ])
