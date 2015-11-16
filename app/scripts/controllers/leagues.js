@@ -139,8 +139,18 @@ angular.module('bowlingJackpotApp.controllers')
     }
 
 
-    $scope.listLotteriesForLeague = function(){
-      
+    $scope.listLotteriesForLeague = function(lId){
+
+      $scope.showSpinner = true;
+
+      $scope.lotteries = LeagueServices.ListLotteriesLeague.get({leagueId : lId.id},
+        function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+
     }
 
 

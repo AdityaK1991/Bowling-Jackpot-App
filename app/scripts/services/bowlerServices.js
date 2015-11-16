@@ -36,6 +36,17 @@ angular.module('bowlingJackpotApp.services')
 	)
 
 
+    factory.BuyTicketBowler = $resource(
+      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/tickets', 
+      {leagueId:'@leagueId', lotteryId:'@lotteryId', bowlerId:'@bowlerId'}, 
+      {
+        'save':    {method:'POST'}
+      }
+      
+    )
+
+
+
 
 	return factory;
 })

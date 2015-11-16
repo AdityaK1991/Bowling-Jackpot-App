@@ -56,5 +56,27 @@ angular.module('bowlingJackpotApp.services')
 	  )
 
 
+
+
+	 factory.ListLotteriesLeague = $resource(
+        baseUrl + '/api/leagues/:leagueId/lotteries',  
+        null, 
+        {
+          'get':    {method:'GET', isArray:true}
+        }
+          
+    )
+
+
+   	 factory.GetLotteryLeague = $resource(
+        baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId',  
+        null, 
+        {
+          'get':    {method:'GET'}
+        }
+          
+    )
+
+
 	return factory;
 })

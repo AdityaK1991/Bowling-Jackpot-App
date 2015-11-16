@@ -109,7 +109,7 @@
 
               <button ng-click="listBowlersInLeague(l)" class="btn btn-success">List Bowlers</button>
               <table class="table table-striped">
-              <th>ID</th>
+              <th>Bowler ID</th>
               <th>Bowler Name</th>
                  <tr ng-repeat="lb in leagueBowlers">
                   <td>{{lb.id}}</td>
@@ -118,7 +118,26 @@
               </table>
 
 
-           </div>
+              <button ng-click="listLotteriesForLeague(l)" class="btn btn-success">List Lotteries</button>
+              
+              <div class="input-group">
+              <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                <input class="form-control input" ng-model="lyId" placeholder="Lottery ID or Lottery Name" required="required" maxlength="60" type="text">
+              </div>
+              
+              <table class="table table-striped">
+              <th>League ID</th>
+              <th>Balance</th>
+              <th>Payout</th>
+                 <tr ng-repeat="lottery in lotteries">
+                  <td>{{lottery.league_id}}</td>
+                  <td>{{lottery.balance}}</td> 
+                  <td>{{lottery.payout}}</td>  
+                 </tr>
+              </table>
+
+
+            
     
         </div>
 
