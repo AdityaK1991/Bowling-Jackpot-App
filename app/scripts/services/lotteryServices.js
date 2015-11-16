@@ -6,7 +6,7 @@ angular.module('bowlingJackpotApp.services')
 
 	var baseUrl = 'http://bowling-api.nextcapital.com';
 
-	 factory.BuyTicket = $resource(
+	 factory.BuyTicketBowler = $resource(
   		baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/tickets', 
   		null, 
   		{

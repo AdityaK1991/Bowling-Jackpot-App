@@ -1,9 +1,11 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('LeaguesCtrl', function (LeagueServices, $scope, $cookies, $location, $http) {
+  .controller('LeaguesCtrl', function (LeagueServices, BowlerServices, $scope, $cookies, $location, $http) {
     
 
 
     $scope.showSpinner = true;
+
+
 
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
       console.log($cookies.get('Token'));
@@ -25,6 +27,22 @@ angular.module('bowlingJackpotApp.controllers')
         })
 
 
+     $scope.bowlers = BowlerServices.ListBowlers.query({},
+        
+        function success(){
+          $scope.showSpinner = false;
+        },
+
+        function error(e){
+
+          $scope.showSpinner = false;
+
+          if(e.status === 401) 
+          {
+            alert("Unauthorized!")
+          }
+        })
+     
 
     $scope.createLeague = function(){
 
@@ -83,7 +101,10 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
+    $scope.toggleDetails = function($index) {
+
+      $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
+    }
 
 
-		
   })

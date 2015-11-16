@@ -82,14 +82,36 @@
       </div>
 
       <div class="panel-body">        
-        <table class="table table-striped">
+        <!-- <table class="table table-striped">
         <th>ID</th>
         <th>League Name</th>
            <tr ng-repeat="l in leagues | filter:lId">
             <td>{{l.id}}</td>
             <td>{{l.name}}</td>  
            </tr>
-        </table>
+        </table> -->
+
+        <div class="list-group-item" ng-click="toggleDetails($index)" ng-repeat="l in leagues">
+        {{l.id}}  {{l.name}}
+        
+           <div class="list-group-item" ng-show="activePosition == $index" ng-click="$event.stopPropagation()">
+
+            <p>Select Bowler ID:</p>
+             <select ng-model="selectBowler">
+              <option ng-repeat="b in bowlers" value="b.id">
+              {{b.id}}
+              </option>
+             </select>
+
+             <span class="list-group-btn">
+              <button ng-click="addBowlerToLeague" class="btn btn-success">Add</button>
+             </span>
+
+
+           </div>
+    
+        </div>
+
     </div>
 
   </div>
