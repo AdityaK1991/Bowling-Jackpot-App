@@ -38,7 +38,7 @@ angular.module('bowlingJackpotApp.services')
 
 	 factory.AddBowlerLeague = $resource(
 	        baseUrl + '/api/leagues/:leagueId/bowlers', 
-	        null, 
+	        {leagueId : '@leagueId', bowlerId:'@bowlerId'}, 
 	        {
 	          'update':    {method:'PUT'}
 	        }
@@ -48,7 +48,7 @@ angular.module('bowlingJackpotApp.services')
 
 	 factory.ListBowlersLeague = $resource(
 	      baseUrl + '/api/leagues/:leagueId/bowlers',  
-	      null, 
+	      {leagueId : '@leagueId'}, 
 	      {
 	        'get':    {method:'GET', isArray:true}
 	      }

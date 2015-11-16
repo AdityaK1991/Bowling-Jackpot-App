@@ -14,6 +14,7 @@ angular.module('bowlingJackpotApp.controllers')
         
         function success(){
           $scope.showSpinner = false;
+
         },
 
         function error(e){
@@ -25,6 +26,8 @@ angular.module('bowlingJackpotApp.controllers')
             alert("Unauthorized!")
           }
         })
+
+
 
 
      $scope.bowlers = BowlerServices.ListBowlers.query({},
@@ -42,7 +45,13 @@ angular.module('bowlingJackpotApp.controllers')
             alert("Unauthorized!")
           }
         })
+
+
      
+    
+     //$scope.leagueBowlers 
+
+
 
     $scope.createLeague = function(){
 
@@ -90,6 +99,22 @@ angular.module('bowlingJackpotApp.controllers')
     	   )
 
     }
+
+
+
+
+    $scope.addBowlerToLeague = function(bId, lId){
+
+      console.log(bId)
+      console.log(lId.id)
+
+
+     $scope.leagueBowlers = LeagueServices.AddBowlerLeague.update({leagueId : lId.id, bowlerId : bId})
+
+    }
+
+
+
 
     $scope.logout = function(){
 

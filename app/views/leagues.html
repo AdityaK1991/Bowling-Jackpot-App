@@ -98,14 +98,25 @@
 
             <p>Select Bowler ID:</p>
              <select ng-model="selectBowler">
-              <option ng-repeat="b in bowlers" value="b.id">
+              <option ng-repeat="b in bowlers">
               {{b.id}}
               </option>
              </select>
 
+             {{selectBowler}}
+
              <span class="list-group-btn">
-              <button ng-click="addBowlerToLeague" class="btn btn-success">Add</button>
+              <button ng-click="addBowlerToLeague(selectBowler, l)" class="btn btn-success">Add</button>
              </span>
+
+              <table class="table table-striped">
+              <th>ID</th>
+              <th>Bowler Name</th>
+                 <tr ng-repeat="lb in leagueBowlers">
+                  <td>{{lb.id}}</td>
+                  <td>{{lb.name}}</td>  
+                 </tr>
+              </table>
 
 
            </div>
