@@ -108,12 +108,40 @@ angular.module('bowlingJackpotApp.controllers')
       console.log(bId)
       console.log(lId.id)
 
+      $scope.showSpinner = true;
 
-     $scope.leagueBowlers = LeagueServices.AddBowlerLeague.update({leagueId : lId.id, bowler_Id : bId})
+     var leagueB = LeagueServices.AddBowlerLeague.update({leagueId : lId.id, bowler_id : bId},
+      function success(){
+        $scope.showSpinner = false;
+      },
+      function error(){
+        $scope.showSpinner = false;
+      })
+
+    
 
     }
 
 
+    $scope.listBowlersInLeague = function(lId){
+
+      $scope.showSpinner = true;
+
+       $scope.leagueBowlers = LeagueServices.ListBowlersLeague.get({leagueId : lId.id},
+        function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+
+
+    }
+
+
+    $scope.listLotteriesForLeague = function(){
+      
+    }
 
 
     $scope.logout = function(){

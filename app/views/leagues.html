@@ -98,17 +98,16 @@
 
             <p>Select Bowler ID:</p>
              <select ng-model="selectBowler">
-              <option ng-repeat="b in bowlers">
+              <option ng-repeat="b in bowlers" value="{{b.id}}">
               {{b.id}}
               </option>
              </select>
-
-             {{selectBowler}}
 
              <span class="list-group-btn">
               <button ng-click="addBowlerToLeague(selectBowler, l)" class="btn btn-success">Add</button>
              </span>
 
+              <button ng-click="listBowlersInLeague(l)" class="btn btn-success">List Bowlers</button>
               <table class="table table-striped">
               <th>ID</th>
               <th>Bowler Name</th>
@@ -129,7 +128,7 @@
 
 
 
-  <div class="panel panel-success">
+  <!-- <div class="panel panel-success">
     <div class="panel-heading"><strong>Add a Bowler to a League</strong></div>
       <div class="panel-body">      
         <form class="form" ng-submit="searchLeague()" accept-charset="UTF-8">
@@ -143,10 +142,10 @@
        <span style="color:red"ng-show="bowlerNotFound">No Bowler found!</span> 
        <p> {{bowler}} </p>
       </div>
-  </div>
+  </div> -->
 
 
-  <div class="panel panel-success">
+  <!-- <div class="panel panel-success">
     <div class="panel-heading"><strong>List all the Bowlers in a League</strong></div>
       <div class="panel-body">  
         <form class="form" ng-submit="listBowlersLeague()" accept-charset="UTF-8">
@@ -154,7 +153,7 @@
            <button type="submit" class="btn btn-success" >Search All</button>
         </form>
     </div>
-  </div>
+  </div> -->
 
 
  </div>
