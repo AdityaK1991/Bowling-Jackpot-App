@@ -5,7 +5,7 @@
         <li><a ng-href="#home">Home</a></li>
         <li><a ng-href="#home/leagues">Leagues</a></li>
         <li class="active"><a ng-href="#home/bowlers">Bowlers</a></li>
-        <li><a ng-href="#home">Tickets</a></li>
+        <li><a ng-href="#home/lottery">Lottery</a></li>
       </ul>
       </div>
 </div>
@@ -14,18 +14,20 @@
 
 <div class="container">
 
+<span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
+
 <button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
 
-  <div class="panel panel-success">
-    <div class="panel-heading">Create a new Bowler</div>
+
+ <!--  <div class="panel panel-info col-md-6">
+    <div class="panel-heading"><strong>Create a new Bowler</strong></div>
       <div class="panel-body">  
-        <form class="form" ng-submit="submitBowler()" accept-charset="UTF-8">
+        <form class="form" ng-submit="createBowler()" accept-charset="UTF-8">
           <div class="input-group">
           <input class="form-control" ng-model="bname" placeholder="Bowler name" required="required" maxlength="60" type="text">      
           <span class="input-group-btn">
-            <button type="submit" id="btn-signin" class="btn btn-primary btn-default">Create</button> 
+            <button type="submit" id="btn-signin" class="btn btn-info">Create</button> 
           </span>
-          <span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinnerCreate"></span>
           </div>
         </form> 
 
@@ -39,37 +41,80 @@
 
 
 
-  <div class="panel panel-success">
-    <div class="panel-heading">Search a Bowler by ID</div>
+  <div class="panel panel-info col-md-6">
+    <div class="panel-heading"><strong>Search a Bowler by ID</strong></div>
       <div class="panel-body">  
         <form class="form" ng-submit="getBowler()" accept-charset="UTF-8">
           <div class="input-group">
-            <input class="form-control input" ng-model="bId" placeholder="Bowler id" required="required" maxlength="60" type="text">
-               <!-- <li> {{bowler}} </li> -->
+            <input class="form-control input" ng-model="bId" placeholder="Bowler ID" required="required" maxlength="60" type="text">
             <span class="input-group-btn">
-               <button type="submit" id="btn-signin" class="btn btn-primary btn-default" >Search</button>
+               <button type="submit" id="btn-signin" class="btn btn-info">Search</button>
             </span>
           </div>
-          <span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinnerSearch"></span>
         </form>
-        <span style="color:red"ng-show="bowlerNotFound">No Bowler found!</span> 
-        <p> {{bowler}} </p>
+        <span style="color:red" ng-show="bowlerNotFound">No Bowler found!</span> 
+
+        <div class="panel panel-default" ng-show="idpanel">
+          <span ng-if="!bowler.id">No Bowler found!</span>
+          <div class="panel-body" ng-if="bowler.id">
+          <p> Bowler ID: {{bowler.id}} </p> 
+          <p> Bowler Name: {{bowler.name}} </p>          
+          </div>
+        </div>
+
     </div>
-  </div>
+  </div> -->
 
 
 
-  <div class="panel panel-success">
-    <div class="panel-heading">List all the Bowlers</div>
-      <div class="panel-body">  
-    	  <form class="form" ng-submit="listBowlers()" accept-charset="UTF-8">
-    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
-    	  	 <button type="submit" id="btn-signin" class="btn btn-primary btn-default" >Search All</button>
-    	  </form>
-        <span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinnerSearchAll"></span>
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>List all the Bowlers</strong></div>
+
+      <div class="row">
+      
+        <div class="col-md-6">
+        <div class="panel-body">  
+          <form class="form" ng-submit="createBowler()" accept-charset="UTF-8">
+            <div class="input-group">
+            <input class="form-control" ng-model="bname" placeholder="Bowler name" required="required" maxlength="60" type="text">      
+            <span class="input-group-btn">
+              <button type="submit" id="btn-signin" class="btn btn-info">Create</button> 
+            </span>
+            </div>
+          </form> 
+
+          <div class="alert alert-success alert-dismissible" role="alert" ng-show="bowlerCreated">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Success!</strong> New Bowler created!
+          </div>
+
+        </div>
+        </div>
+
+
+      <div class="col-md-6">
+        <div class="panel-body">  
+            <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+              <input class="form-control input" ng-model="bId" placeholder="Bowler ID or Bowler Name" required="required" maxlength="60" type="text">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel-body">        
+        <table class="table table-striped">
+        <th>ID</th>
+        <th>Bowler Name</th>
+    	  	 <tr ng-repeat="b in bowlers | filter:bId">
+            <td>{{b.id}}</td>
+            <td>{{b.name}}</td>  
+           </tr>
+        </table>
     </div>
-  </div>
 
+  </div>
 
 
 </div>

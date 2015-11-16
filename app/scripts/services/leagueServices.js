@@ -1,6 +1,6 @@
 angular.module('bowlingJackpotApp.services')
 
-  .factory('LServices', function($resource) {
+  .factory('LeagueServices', function($resource) {
 
 	 var factory = {};
 
@@ -51,36 +51,6 @@ angular.module('bowlingJackpotApp.services')
 	      null, 
 	      {
 	        'get':    {method:'GET', isArray:true}
-	      }
-	        
-	  )
-
-
-	 factory.ListLotteriesLeague = $resource(
-	      baseUrl + '/api/leagues/:leagueId/lotteries',  
-	      null, 
-	      {
-	        'get':    {method:'GET', isArray:true}
-	      }
-	        
-	  )
-
-
-	 factory.GetLotteryLeague = $resource(
-	      baseUrl + '/api/leagues/:leagueId/lotteries/lotteryId',  
-	      null, 
-	      {
-	        'get':    {method:'GET'}
-	      }
-	        
-	  )
-
-
-	 factory.RollResultLeague = $resource(
-	      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/roll',  
-	      null, 
-	      {
-	        'update':    {method:'PUT'}
 	      }
 	        
 	  )

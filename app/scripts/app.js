@@ -57,6 +57,10 @@ angular
         templateUrl: 'views/bowlers.html',
         controller: 'BowlersCtrl'
       })
+      .when('/home/lottery', {
+        templateUrl: 'views/lottery.html',
+        controller: 'LotteryCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,8 +1,34 @@
 angular.module('bowlingJackpotApp.controllers')
-  .controller('LeaguesCtrl', function (LServices, $scope, $cookies, $location) {
+  .controller('LeaguesCtrl', function (LeagueServices, $scope, $cookies, $location, $http) {
     
 
-    $scope.submitLeague = function(){
+
+    $scope.showSpinner = true;
+
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
+      console.log($cookies.get('Token'));
+
+      $scope.leagues = LeagueServices.ListLeagues.query({},
+        
+        function success(){
+          $scope.showSpinner = false;
+        },
+
+        function error(e){
+
+          $scope.showSpinner = false;
+
+          if(e.status === 401) 
+          {
+            alert("Unauthorized!")
+          }
+        })
+
+
+
+    $scope.createLeague = function(){
+
+      $scope.showSpinner = true;
 
     	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
@@ -10,15 +36,36 @@ angular.module('bowlingJackpotApp.controllers')
 
     	LeagueServices.CreateLeague.save({name: leagueName},
 
-    		function success() {
-                  alert("League created!")
+    		function success() {                  
+
+                  $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
+                   //console.log($cookies.get('Token'));
+
+                    $scope.leagues = LeagueServices.ListLeagues.query({},
+                      
+                      function success(){
+                        $scope.showSpinner = false;
+                      },
+
+                      function error(e){
+
+                        $scope.showSpinner = false;
+
+                        if(e.status === 401) 
+                        {
+                          alert("Unauthorized!")
+                        }
+                      })
+
                 },
 
                 function error(e) {
                   if(e.status === 401) {
+                    $scope.showSpinner = false;
                     alert("Unauthorized!")
                   }
                   else if(e.status == 400) {
+                    $scope.showSpinner = false;
                   	alert("League not created!")
                   }
                 }

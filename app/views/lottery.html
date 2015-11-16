@@ -1,0 +1,88 @@
+<div class="navbar navbar-default" role="navigation">
+<div class="container">
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a ng-href="#home">Home</a></li>
+        <li><a ng-href="#home/leagues">Leagues</a></li>
+        <li><a ng-href="#home/bowlers">Bowlers</a></li>
+        <li class="active"><a ng-href="#home/lottery">Lottery</a></li>
+      </ul>
+      </div>
+</div>
+
+</div>
+
+
+
+<div class="container">
+
+<span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
+
+<button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>List all Lotteries for a League</strong></div>
+      <div class="panel-body">  
+    	  <form class="form" ng-submit="listLotteries()" accept-charset="UTF-8">
+    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
+    	  	 <button type="submit" id="btn-signin" class="btn btn-info" >Search All</button>
+    	  </form>
+    </div>
+  </div>
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>Buy Ticket for a Bowler</strong></div>
+      <div class="panel-body">  
+        <form class="form" ng-submit="submitBowler()" accept-charset="UTF-8">
+          <div class="input-group">
+          <input class="form-control" ng-model="btID" placeholder="Bowler ID" required="required" maxlength="60" type="text">      
+          <span class="input-group-btn">
+            <button type="submit" class="btn btn-info">Buy</button> 
+          </span>
+          </div>
+        </form> 
+
+        <div class="alert alert-success alert-dismissible" role="alert" ng-show="bowlerCreated">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <strong>Success!</strong> New Bowler created!
+        </div>
+
+      </div>
+  </div>
+
+
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>List all Tickets for a Jackpot</strong></div>
+      <div class="panel-body">  
+    	  <form class="form" ng-submit="listTickets()" accept-charset="UTF-8">
+    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
+    	  	 <button type="submit" id="btn-signin" class="btn btn-info" >Search All</button>
+    	  </form>
+    </div>
+  </div>
+
+  <div class="panel panel-info">
+    <div class="panel-heading"><strong>Draw a winning Ticket</strong></div>
+      <div class="panel-body">  
+    	  <form class="form" ng-submit="drawTicket()" accept-charset="UTF-8">
+    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
+    	  	 <button type="submit" class="btn btn-info" >Draw</button>
+    	  </form>
+    </div>
+  </div>
+
+   <div class="panel panel-info">
+    <div class="panel-heading"><strong>Record result of Roll</strong></div>
+      <div class="panel-body">  
+    	  <form class="form" ng-submit="recordRoll()" accept-charset="UTF-8">
+    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
+    	  	 <button type="submit" class="btn btn-info" >Record</button>
+    	  </form>
+    </div>
+  </div>
+
+
+</div>

@@ -1,10 +1,37 @@
-angular.module('bowlingJackpotApp.controllers')
+  angular.module('bowlingJackpotApp.controllers')
   .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies, $location) {
 
 
-  	$scope.submitBowler = function(){
+//$scope.listBowlers = function(){
 
-      $scope.showSpinnerCreate = true;
+      $scope.showSpinner = true;
+
+      $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
+      console.log($cookies.get('Token'));
+
+      $scope.bowlers = BowlerServices.ListBowlers.query({},
+        
+        function success(){
+          $scope.showSpinner = false;
+        },
+
+        function error(e){
+
+          $scope.showSpinner = false;
+
+          if(e.status === 401) 
+          {
+            alert("Unauthorized!")
+          }
+        })
+    //}
+
+
+
+  	$scope.createBowler = function(){
+
+      $scope.showSpinner = true;
+
 
     	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
@@ -17,82 +44,73 @@ angular.module('bowlingJackpotApp.controllers')
 
     		function success() {
                   console.log("bowler created")
-                  $scope.showSpinnerCreate = false;
+                  //$scope.showSpinner = false;
                   $scope.bowlerCreated = true;
+
+                  $scope.bowlers = BowlerServices.ListBowlers.query({},
+        
+                    function success(){
+                      $scope.showSpinner = false;
+                    },
+
+                    function error(e){
+
+                      $scope.showSpinner = false;
+
+                      if(e.status === 401) 
+                      {
+                        alert("Unauthorized!")
+                      }
+                    })
+
                 },
 
-                function error(e) {
-                  if(e.status === 401) {
-                    $scope.showSpinnerCreate = false;
-                    alert("Unauthorized!")
-
-                  }
-                  else if(e.status == 400) {
-                    $scope.showSpinnerCreate = false;
-                  	alert("Bowler not created!")
-                  	$scope.bowlerNotCreated = true
-                  }
-                }
-    	)
-
-
-
-    }
-
-
-    $scope.listBowlers = function(){
-
-      $scope.showSpinnerSearchAll = true;
-
-    	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
-      console.log($cookies.get('Token'));
-
-    	$scope.bowlers = BowlerServices.ListBowlers.query({},
-        
-        function success(){
-          $scope.showSpinnerSearchAll = false;
-        }),
-
-        function error(e){
-
-          $scope.showSpinnerSearchAll = false;
-
-          if(e.status === 401) 
-          {
+        function error(e) {
+          if(e.status === 401) {
+            
             alert("Unauthorized!")
+
           }
-        }
+          else if(e.status == 400) {
+            $scope.showSpinner = false;
+          	alert("Bowler not created!")
+          	$scope.bowlerNotCreated = true
+          }
+        })
+
     }
 
 
 		
 	$scope.getBowler = function(){
 
-      $scope.showSpinnerSearch = true;
+      $scope.showSpinner = true;
+      
+      $scope.idpanel = true;
 
     	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
     	$scope.bowler = BowlerServices.GetBowler.get({bowlerId : $scope.bId},
     		function success(){
 
-          $scope.showSpinnerSearch = false;
-
-    			if($scope.getBowler == {}) {
+          $scope.showSpinner = false;
+          //console.log(Object.keys($scope.bowler).length)
+    			if($scope.bowler === {}) {
     				$scope.bowlerNotFound = true;
     			}
 
     		},
     		function error(e){
-          if(e.status === 401) 
-          {
+          if(e.status === 401) {
 
-            $scope.showSpinnerSearch = false;
+            $scope.showSpinner = false;
 
             alert("Unauthorized!")
 
           }
 
     		})
+
     }
 
 

@@ -5,7 +5,7 @@
         <li><a ng-href="#home">Home</a></li>
         <li class="active"><a ng-href="#home/leagues">Leagues</a></li>
         <li><a ng-href="#home/bowlers">Bowlers</a></li>
-        <li><a ng-href="#home">Tickets</a></li>
+        <li><a ng-href="#home/lottery">Lottery</a></li>
       </ul>
       </div>
 </div>
@@ -13,31 +13,118 @@
 </div>
 
 <div class="container">
- <div class="jumbotron">
 
- <button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
+<span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
 
-<div class="row">
-  <div class="col-md-5">
-  	
-  	<form class="form" ng-submit="submitLeague()" accept-charset="UTF-8">
-	 <div class="input-group row-buffer">
-	  <input class="form-control input-lg" ng-model="lname" placeholder="League name" required="required" maxlength="60" type="text">
-	 </div>
-	 <button type="submit" id="btn-signin" class="btn btn-primary">Create league</button>
- 	</form>
+<button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
 
+  <!-- <div class="panel panel-success">
+    <div class="panel-heading"><strong>Create a new League</strong></div>
+      <div class="panel-body">    	
+      	<form class="form" ng-submit="submitLeague()" accept-charset="UTF-8">
+      	 <div class="input-group">
+      	  <input class="form-control" ng-model="lname" placeholder="League name" required="required" maxlength="60" type="text">
+           <span class="input-group-btn">
+        	 <button type="submit" id="btn-signin" class="btn btn-success">Create</button>
+           </span>
+         </div>
+     	 </form>
+      </div>
+  </div>
+
+
+<div class="panel panel-success">
+    <div class="panel-heading"><strong>Search a League by ID</strong></div>
+      <div class="panel-body">      
+        <form class="form" ng-submit="searchLeague()" accept-charset="UTF-8">
+         <div class="input-group">
+          <input class="form-control" ng-model="lsearch" placeholder="League ID" required="required" maxlength="60" type="text">
+           <span class="input-group-btn">
+           <button type="submit" class="btn btn-success">Search</button>
+           </span>
+         </div>
+       </form>
+       <span style="color:red"ng-show="bowlerNotFound">No Bowler found!</span> 
+       <p> {{bowler}} </p>
+      </div>
+  </div> -->
+
+
+  <div class="panel panel-success">
+    <div class="panel-heading"><strong>List all Leagues</strong></div>
+
+      <div class="row">
+        
+        <div class="col-md-6">
+          <div class="panel-body">      
+            <form class="form" ng-submit="createLeague()" accept-charset="UTF-8">
+             <div class="input-group">
+              <input class="form-control" ng-model="lname" placeholder="League name" required="required" maxlength="60" type="text">
+               <span class="input-group-btn">
+               <button type="submit" id="btn-signin" class="btn btn-success">Create</button>
+               </span>
+             </div>
+           </form>
+          </div>
+        </div>
+
+
+
+        <div class="col-md-6">
+          <div class="panel-body">  
+            <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+              <input class="form-control input" ng-model="lId" placeholder="League ID or League Name" required="required" maxlength="60" type="text">
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="panel-body">        
+        <table class="table table-striped">
+        <th>ID</th>
+        <th>League Name</th>
+           <tr ng-repeat="l in leagues | filter:lId">
+            <td>{{l.id}}</td>
+            <td>{{l.name}}</td>  
+           </tr>
+        </table>
+    </div>
 
   </div>
 
-  <div class="col-md-5">
 
+
+  <div class="panel panel-success">
+    <div class="panel-heading"><strong>Add a Bowler to a League</strong></div>
+      <div class="panel-body">      
+        <form class="form" ng-submit="searchLeague()" accept-charset="UTF-8">
+         <div class="input-group">
+          <input class="form-control" ng-model="ladd" placeholder="Bowler ID" required="required" maxlength="60" type="text">
+           <span class="input-group-btn">
+           <button type="submit" class="btn btn-success">Add</button>
+           </span>
+         </div>
+       </form>
+       <span style="color:red"ng-show="bowlerNotFound">No Bowler found!</span> 
+       <p> {{bowler}} </p>
+      </div>
   </div>
 
-</div>
 
+  <div class="panel panel-success">
+    <div class="panel-heading"><strong>List all the Bowlers in a League</strong></div>
+      <div class="panel-body">  
+        <form class="form" ng-submit="listBowlersLeague()" accept-charset="UTF-8">
+           <li ng-repeat="b in bowlers"> {{b}} </li>
+           <button type="submit" class="btn btn-success" >Search All</button>
+        </form>
+    </div>
+  </div>
 
 
  </div>
+
 </div>
 
