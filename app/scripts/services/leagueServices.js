@@ -38,7 +38,7 @@ angular.module('bowlingJackpotApp.services')
 
 	 factory.AddBowlerLeague = $resource(
 	        baseUrl + '/api/leagues/:leagueId/bowlers', 
-	        {leagueId : '@leagueId', bowlerId:'@bowlerId'}, 
+	        {leagueId : '@leagueId', bowler_Id:'@bowler_Id'}, 
 	        {
 	          'update':    {method:'PUT'}
 	        }

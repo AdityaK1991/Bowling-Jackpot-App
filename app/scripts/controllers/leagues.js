@@ -109,7 +109,7 @@ angular.module('bowlingJackpotApp.controllers')
       console.log(lId.id)
 
 
-     $scope.leagueBowlers = LeagueServices.AddBowlerLeague.update({leagueId : lId.id, bowlerId : bId})
+     $scope.leagueBowlers = LeagueServices.AddBowlerLeague.update({leagueId : lId.id, bowler_Id : bId})
 
     }
 
