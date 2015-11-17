@@ -228,14 +228,19 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
+    $timeout(function () {
 
-    $scope.logout = function(){
+      $scope.logout = function(){
 
-      $cookies.remove('Token');
+        $scope.showSpinner = false;
+        
+        $cookies.remove('Token');
 
-      $location.path('/main');
+        $location.path('/main');
 
-    }
+      }
+    }, 1000)
+
 
 
 

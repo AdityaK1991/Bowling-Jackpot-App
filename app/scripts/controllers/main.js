@@ -1,7 +1,7 @@
 
 angular.module('bowlingJackpotApp.controllers', [])
-  .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', 'localStorageService', '$cookies', 
-    function($scope, $location, $http, LoginServices, $timeout, localStorageService, $cookies) {
+  .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', '$cookies', 
+    function($scope, $location, $http, LoginServices, $timeout, $cookies) {
    
     
 
@@ -14,9 +14,7 @@ angular.module('bowlingJackpotApp.controllers', [])
 
   			var encodedLogin = btoa(email + ":" + password);
 
-
           $cookies.put('Token', encodedLogin)
-
 
           $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
 
@@ -29,7 +27,7 @@ angular.module('bowlingJackpotApp.controllers', [])
 
                   $scope.showSpinner=false;
 
-                  $location.path('/home')
+                  $location.path('/bowlers')
                 
                 },
 

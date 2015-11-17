@@ -1,74 +1,25 @@
-<div class="navbar navbar-default" role="navigation">
 <div class="container">
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li><a ng-href="#home">Home</a></li>
-        <li><a ng-href="#home/leagues">Leagues</a></li>
-        <li class="active"><a ng-href="#home/bowlers">Bowlers</a></li>
-        <li><a ng-href="#home/lottery">Lottery</a></li>
-      </ul>
-      </div>
+<div class="navbar navbar-default" role="navigation"> 
+  <ul class="nav nav-tabs">
+    <li class="active"><a ng-href="#bowlers"><strong>Bowlers</strong></a></li>
+    <li><a ng-href="#leagues"><strong>Leagues</strong></a></li>
+    <a ng-click="logout()" class="btn btn-primary btn-lg pull-right">Logout</a>
+  </ul> 
+</div>
 </div>
 
-</div>
 
 <div class="container">
 
-<span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
-
-<button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
-
-
- <!--  <div class="panel panel-info col-md-6">
-    <div class="panel-heading"><strong>Create a new Bowler</strong></div>
-      <div class="panel-body">  
-        <form class="form" ng-submit="createBowler()" accept-charset="UTF-8">
-          <div class="input-group">
-          <input class="form-control" ng-model="bname" placeholder="Bowler name" required="required" maxlength="60" type="text">      
-          <span class="input-group-btn">
-            <button type="submit" id="btn-signin" class="btn btn-info">Create</button> 
-          </span>
-          </div>
-        </form> 
-
-        <div class="alert alert-success alert-dismissible" role="alert" ng-show="bowlerCreated">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong>Success!</strong> New Bowler created!
-        </div>
-
-      </div>
+  <div class="jumbotron">
+  <p><h4>Welcome to the Bowling Jackpot game! You can create Bowlers, assign Bowlers to Leagues and get a chance to win a Jackpot!</h4></p>
   </div>
 
-
-
-  <div class="panel panel-info col-md-6">
-    <div class="panel-heading"><strong>Search a Bowler by ID</strong></div>
-      <div class="panel-body">  
-        <form class="form" ng-submit="getBowler()" accept-charset="UTF-8">
-          <div class="input-group">
-            <input class="form-control input" ng-model="bId" placeholder="Bowler ID" required="required" maxlength="60" type="text">
-            <span class="input-group-btn">
-               <button type="submit" id="btn-signin" class="btn btn-info">Search</button>
-            </span>
-          </div>
-        </form>
-        <span style="color:red" ng-show="bowlerNotFound">No Bowler found!</span> 
-
-        <div class="panel panel-default" ng-show="idpanel">
-          <span ng-if="!bowler.id">No Bowler found!</span>
-          <div class="panel-body" ng-if="bowler.id">
-          <p> Bowler ID: {{bowler.id}} </p> 
-          <p> Bowler Name: {{bowler.name}} </p>          
-          </div>
-        </div>
-
-    </div>
-  </div> -->
-
+  <span us-spinner="{radius:15, width:5, length: 15}" spinner-on="showSpinner"></span>
 
 
   <div class="panel panel-info">
-    <div class="panel-heading"><strong>List all the Bowlers</strong></div>
+    <div class="panel-heading"><strong>Create and Search Bowlers</strong></div>
 
       <div class="row">
       
@@ -82,11 +33,6 @@
             </span>
             </div>
           </form> 
-
-          <div class="alert alert-success alert-dismissible" role="alert" ng-show="bowlerCreated">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Success!</strong> New Bowler created!
-          </div>
 
         </div>
         </div>
@@ -108,20 +54,7 @@
  
       <div class="panel-body">       
 
-
-      <!--   <a class="list-group-item" data-toggle="collapse" data-target="#sm" data-parent="#menu">MESSAGES <span class="label label-info">5</span> <span class="glyphicon glyphicon-envelope pull-right"></span></a>
- <div id="sm" class="sublinks collapse">
-  <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> inbox</a>
-  <a class="list-group-item small"><span class="glyphicon glyphicon-chevron-right"></span> sent</a>
- </div> -->
-
-        
-     <!--  <a class="list-group-item" data-toggle="collapse" data-target="#s1" ng-repeat="b in bowlers">
-      <div id="sl" class="sublinks collapse">
-      <a>{{b.id}}</a>
-      </div>
-      </a>  -->
-        <table class="table table-striped">
+        <table class="table table-striped" ng-hide="bowlers.length==0">
         <th>ID</th>
         <th>Bowler Name</th>
     	  	 <tr ng-repeat="b in bowlers | filter:bId">
@@ -130,9 +63,8 @@
            </tr>
         </table>
 
-    </div>
+      </div>
 
   </div>
-
 
 </div>

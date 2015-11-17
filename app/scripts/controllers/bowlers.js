@@ -1,31 +1,28 @@
   angular.module('bowlingJackpotApp.controllers')
-  .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies, $location) {
+  .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies, $location, $timeout) {
 
-
-//$scope.listBowlers = function(){
 
       $scope.showSpinner = true;
 
       $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
       console.log($cookies.get('Token'));
 
-      $scope.bowlers = BowlerServices.ListBowlers.query({},
-        
-        function success(){
-          $scope.showSpinner = false;
-        },
+      
+        $scope.bowlers = BowlerServices.ListBowlers.query({},
+          
+          function success(){
+            $scope.showSpinner = false;
+          },
 
-        function error(e){
+          function error(e){
 
-          $scope.showSpinner = false;
+            $scope.showSpinner = false;
 
-          if(e.status === 401) 
-          {
-            alert("Unauthorized!")
-          }
-        })
-    //}
-
+            if(e.status === 401) 
+            {
+              alert("Unauthorized!")
+            }
+          })
 
 
   	$scope.createBowler = function(){
@@ -37,33 +34,29 @@
 
     	var bowlerName = $scope.bname;
 
-    	// $scope.bowlerCreated = false;
-    	// $scope.bowlerNotCreated = false;
-
     	BowlerServices.CreateBowler.save({name: bowlerName},
 
     		function success() {
-                  console.log("bowler created")
-                  //$scope.showSpinner = false;
-                  $scope.bowlerCreated = true;
 
-                  $scope.bowlers = BowlerServices.ListBowlers.query({},
-        
-                    function success(){
-                      $scope.showSpinner = false;
-                    },
+          $scope.bowlerCreated = true;
 
-                    function error(e){
+          $scope.bowlers = BowlerServices.ListBowlers.query({},
 
-                      $scope.showSpinner = false;
+            function success(){
+              $scope.showSpinner = false;
+            },
 
-                      if(e.status === 401) 
-                      {
-                        alert("Unauthorized!")
-                      }
-                    })
+            function error(e){
 
-                },
+              $scope.showSpinner = false;
+
+              if(e.status === 401) 
+              {
+                alert("Unauthorized!")
+              }
+            })
+
+        },
 
         function error(e) {
           if(e.status === 401) {
@@ -114,14 +107,18 @@
     }
 
 
+  $timeout(function () {
 
-  $scope.logout = function(){
+      $scope.logout = function(){
 
-    $cookies.remove('Token');
+        $scope.showSpinner = false;
+        
+        $cookies.remove('Token');
 
-    $location.path('/main');
+        $location.path('/main');
 
-  }
+      }
+    }, 1000)
 
 
     
