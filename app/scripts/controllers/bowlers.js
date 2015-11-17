@@ -22,6 +22,10 @@
             {
               alert("Unauthorized!")
             }
+
+            else {
+              alert("Network error! Please refresh the page!");
+            }
           })
 
 
@@ -54,6 +58,9 @@
               {
                 alert("Unauthorized!")
               }
+              else {
+              alert("Network error! Please refresh the page!");
+              }
             })
 
         },
@@ -69,6 +76,9 @@
           	alert("Bowler not created!")
           	$scope.bowlerNotCreated = true
           }
+          else {
+              alert("Network error! Please refresh the page!");
+            }
         })
 
     }
@@ -101,6 +111,9 @@
             alert("Unauthorized!")
 
           }
+          else {
+              alert("Network error! Please refresh the page!");
+            }
 
     		})
 

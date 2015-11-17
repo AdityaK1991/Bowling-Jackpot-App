@@ -14,18 +14,11 @@ angular
     'ngCookies',
     'ngRoute',
     'ngResource',
-    'ngSanitize',
-    'ngResource',
-    'ngTouch',
-    'LocalStorageModule',
     'angularSpinner',
     'bowlingJackpotApp.controllers',
     'bowlingJackpotApp.services'
   ])
 
-  .config(['localStorageServiceProvider', function(localStorageServiceProvider){
-    localStorageServiceProvider.setPrefix('ls');
-  }])
 
   .config(function ($routeProvider) {
     $routeProvider

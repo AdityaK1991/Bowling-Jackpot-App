@@ -23,7 +23,11 @@ angular.module('bowlingJackpotApp.controllers')
 
           if(e.status === 401) 
           {
-            //alert("Unauthorized!")
+            alert("Unauthorized!")
+          }
+
+          else {
+            alert("Network error! Please refresh the page!");
           }
         })
 
@@ -42,7 +46,11 @@ angular.module('bowlingJackpotApp.controllers')
 
           if(e.status === 401) 
           {
-           // alert("Unauthorized!")
+           alert("Unauthorized!")
+          }
+
+          else {
+            alert("Network error! Please refresh the page!");
           }
         })
     
@@ -78,6 +86,10 @@ angular.module('bowlingJackpotApp.controllers')
                   {
                     alert("Unauthorized!")
                   }
+
+                  else {
+                    alert("Network error! Please refresh the page!");
+                  }
                 })
 
             },
@@ -90,6 +102,9 @@ angular.module('bowlingJackpotApp.controllers')
             else if(e.status == 400) {
               $scope.showSpinner = false;
             	alert("League not created!")
+            }  
+            else {
+              alert("Network error! Please refresh the page!");
             }
           }
    )}
@@ -111,11 +126,9 @@ angular.module('bowlingJackpotApp.controllers')
              $scope.leagueBowlers = LeagueServices.ListBowlersLeague.get({leagueId : lId.id},
               function success(){
                 $scope.showSpinner = false;
-                //console.log($scope.leagueBowlers.length)
               },
               function error(){
                 $scope.showSpinner = false;
-                //console.log($scope.leagueBowlers.length)
               })
         },
         function error(){
@@ -143,13 +156,30 @@ angular.module('bowlingJackpotApp.controllers')
                 },
                 function error(){
                   $scope.showSpinner = false;
+
+                   if(e.status === 401) 
+                  {
+                    alert("Unauthorized!")
+                  }
+
+                  else {
+                    alert("Network error! Please refresh the page!");
+                  }
+
                 })
 
             },
             function error(){
               $scope.showSpinner = false;
-              //console.log($scope.leagueBowlers.length)
-          })
+              if(e.status === 401) 
+              {
+                  alert("Unauthorized!")
+              }
+
+              else {
+                  alert("Network error! Please refresh the page!");
+              }
+        })
 
        }, 200);
 
@@ -175,7 +205,15 @@ angular.module('bowlingJackpotApp.controllers')
                     $scope.showSpinner = false;
                   },
                   function error(){
-                    $scope.showSpinner = false;
+                      $scope.showSpinner = false;
+                      if(e.status === 401) 
+                      {
+                        alert("Unauthorized!")
+                      }
+
+                      else {
+                        alert("Network error! Please refresh the page!");
+                      }
                   })
 
 
@@ -184,6 +222,9 @@ angular.module('bowlingJackpotApp.controllers')
               $scope.showSpinner = false;
               if(e.status==400){
                 alert("Couldn't find a lottery with that ID!");
+              }
+              else {
+                alert("Network error! Please refresh the page!");
               }
               
           })
@@ -208,6 +249,17 @@ angular.module('bowlingJackpotApp.controllers')
         },
         function error(){
           $scope.showSpinner = false;
+           if(e.status === 401) {
+                alert("Unauthorized!")
+           }
+           else if(e.status == 400) {
+              $scope.showSpinner = false;
+              alert("Ticket could not be drawn!")
+           }  
+
+           else {
+              alert("Network error! Please refresh the page!");
+           }
         })
 
     }
@@ -220,9 +272,22 @@ angular.module('bowlingJackpotApp.controllers')
       var pCount = LeagueServices.RollResultLeague.update({leagueId:lId.id, lotteryId:loId, pin_count:$scope.p_count },
          function success(){
           $scope.showSpinner = false;
+          alert("Pin count updated!")
         },
-        function error(){
+        function error(e){
           $scope.showSpinner = false;
+          if(e.status === 401) 
+            {
+              alert("Unauthorized!")
+            }
+            else if(e.status===404){
+              alert("Please select League ID first!")
+            }
+
+            else {
+              alert("Network error! Please refresh the page!");
+            }
+
         })
     }
 
@@ -233,7 +298,7 @@ angular.module('bowlingJackpotApp.controllers')
       $scope.logout = function(){
 
         $scope.showSpinner = false;
-        
+
         $cookies.remove('Token');
 
         $location.path('/main');
@@ -248,7 +313,6 @@ angular.module('bowlingJackpotApp.controllers')
 
       $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
       $scope.listBowlersInLeague(lId);
-      //$scope.listLotteriesForLeague(loId);
     }
 
 
