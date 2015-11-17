@@ -78,5 +78,48 @@ angular.module('bowlingJackpotApp.services')
     )
 
 
+
+    factory.BuyTicketBowler = $resource(
+      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/tickets', 
+      {leagueId:'@leagueId', lotteryId:'@lotteryId', bowler_id:'@bowler_id'}, 
+      {
+        'save':    {method:'POST'}
+      }
+      
+    )
+
+
+
+    factory.ListTickets = $resource(
+      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/tickets', 
+      {leagueId:'@leagueId', lotteryId:'@lotteryId'}, 
+      {
+        'get':    {method:'GET', isArray:true}
+      }
+      
+    )
+
+
+
+    factory.DrawTicket = $resource(
+      baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/roll', 
+      {leagueId:'@leagueId', lotteryId:'@lotteryId'}, 
+      {
+        'get':    {method:'GET'}
+      }
+      
+    )
+
+
+    factory.RollResultLeague = $resource(
+        baseUrl + '/api/leagues/:leagueId/lotteries/:lotteryId/roll',  
+        {leagueId:'@leagueId', lotteryId:'@lotteryId', pin_count:'@pin_count'}, 
+        {
+          'update':    {method:'PUT'}
+        }
+          
+    )
+
+
 	return factory;
 })

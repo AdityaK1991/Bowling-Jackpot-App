@@ -154,6 +154,73 @@ angular.module('bowlingJackpotApp.controllers')
     }
 
 
+
+    $scope.buyTicketForBowler = function(lId, loId, bId){
+
+       $scope.showSpinner = true;
+
+       console.log(lId.id);
+       console.log(bId);
+       console.log(loId);
+
+       var ticketBowler = LeagueServices.BuyTicketBowler.save({leagueId:lId.id, lotteryId:loId, bowler_id:bId},
+        function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+
+    }
+
+
+
+    $scope.listTicketsForJackpot = function(lId, loId){
+
+      $scope.showSpinner = true;
+
+      $scope.tickets = LeagueServices.ListTickets.get({leagueId:lId.id, lotteryId:loId},
+         function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+    }
+
+
+
+    $scope.drawTicket = function(lId, loId){
+
+      $scope.showSpinner = true;
+
+      $scope.winners = LeagueServices.DrawTicket.get({leagueId:lId.id, lotteryId:loId},
+         function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+
+    }
+
+
+
+    $scope.pinCount = function(lId, loId){
+      $scope.showSpinner = true;
+
+      var pCount = LeagueServices.RollResultLeague.update({leagueId:lId.id, lotteryId:loId, pin_count:$scope.p_count },
+         function success(){
+          $scope.showSpinner = false;
+        },
+        function error(){
+          $scope.showSpinner = false;
+        })
+    }
+
+
+
+
     $scope.logout = function(){
 
       $cookies.remove('Token');

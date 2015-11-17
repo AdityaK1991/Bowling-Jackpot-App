@@ -125,21 +125,82 @@
                 <input class="form-control input" ng-model="lyId" placeholder="Lottery ID or Lottery Name" required="required" maxlength="60" type="text">
               </div>
               
+
+              <p>Bowler ID:</p>
+             <select ng-model="selectBowler">
+              <option ng-repeat="lb in leagueBowlers" value="{{lb.id}}">
+              {{lb.id}}
+              </option>
+             </select>
+
+
+              <p>Lottery ID:</p>
+             <select ng-model="selectLottery">
+              <option ng-repeat="lottery in lotteries" value="{{lottery.id}}">
+              {{lottery.id}}
+              </option>
+             </select>
+
               <table class="table table-striped">
+              <th>Lottery ID</th>
               <th>League ID</th>
               <th>Balance</th>
               <th>Payout</th>
                  <tr ng-repeat="lottery in lotteries">
+                  <td>{{lottery.id}}</td>
                   <td>{{lottery.league_id}}</td>
-                  <td>{{lottery.balance}}</td> 
+                  <td>{{lottery.balance}}</td>     
                   <td>{{lottery.payout}}</td>  
                  </tr>
               </table>
 
+              <button ng-click="buyTicketForBowler(l, selectLottery, selectBowler)" class="btn btn-success">Buy Ticket</button>
 
-            
-    
-        </div>
+              <button ng-click="listTicketsForJackpot(l, selectLottery)" class="btn btn-success">List Tickets</button>
+
+
+              <table class="table table-striped">
+              <th>Lottery ID</th>
+              <th>Bowler ID</th>
+              <th>Price</th>
+              <th>Winner</th>
+                 <tr ng-repeat="ticket in tickets">
+                  <td>{{ticket.lottery_id}}</td>
+                  <td>{{ticket.bowler_id}}</td>
+                  <td>{{ticket.price}}</td>     
+                  <td>{{ticket.winner}}</td>  
+                 </tr>
+              </table>
+
+
+              <button ng-click="drawTicket(l, selectLottery)" class="btn btn-success">DRAW TICKET</button>
+
+              <div class="col-md-6">
+              <form class="form" ng-submit="pinCount(l, selectLottery)" accept-charset="UTF-8">
+               <div class="input-group">
+                <input class="form-control" ng-model="p_count" placeholder="Enter pin count" required="required" maxlength="60" type="text">
+                 <span class="input-group-btn">
+                 <button type="submit" class="btn btn-success">Pin Count</button>
+                 </span>
+               </div>
+              </form>
+              </div>
+
+
+              <table class="table table-striped">
+              <th>Lottery ID</th>
+              <th>Bowler ID</th>
+              <th>Pin Count</th>
+              <th>Payout</th>
+                 <tr ng-repeat="winner in winners">
+                  <td>{{winner.lottery_id}}</td>
+                  <td>{{winner.bowler_id}}</td>
+                  <td>{{winner.pin_count}}</td>     
+                  <td>{{winner.payout}}</td>  
+                 </tr>
+              </table>
+
+            </div>
 
     </div>
 

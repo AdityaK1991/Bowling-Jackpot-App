@@ -21,37 +21,6 @@
 <button ng-click="logout()" id="btn-signin" class="btn btn-primary btn-default" >Logout</button>
 
 
-  <div class="panel panel-info">
-    <div class="panel-heading"><strong>List all Lotteries for a League</strong></div>
-      <div class="panel-body">  
-    	  <form class="form" ng-submit="listLotteries()" accept-charset="UTF-8">
-    	  	 <li ng-repeat="b in bowlers"> {{b}} </li>
-    	  	 <button type="submit" id="btn-signin" class="btn btn-info" >Search All</button>
-    	  </form>
-    </div>
-  </div>
-
-
-  <div class="panel panel-info">
-    <div class="panel-heading"><strong>Buy Ticket for a Bowler</strong></div>
-      <div class="panel-body">  
-        <form class="form" ng-submit="submitBowler()" accept-charset="UTF-8">
-          <div class="input-group">
-          <input class="form-control" ng-model="btID" placeholder="Bowler ID" required="required" maxlength="60" type="text">      
-          <span class="input-group-btn">
-            <button type="submit" class="btn btn-info">Buy</button> 
-          </span>
-          </div>
-        </form> 
-
-        <div class="alert alert-success alert-dismissible" role="alert" ng-show="bowlerCreated">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <strong>Success!</strong> New Bowler created!
-        </div>
-
-      </div>
-  </div>
-
 
 
   <div class="panel panel-info">

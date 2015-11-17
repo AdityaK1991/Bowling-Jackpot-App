@@ -114,6 +114,8 @@
     }
 
 
+
+
   $scope.logout = function(){
 
     $cookies.remove('Token');
