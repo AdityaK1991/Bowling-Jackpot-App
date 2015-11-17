@@ -17,9 +17,18 @@ angular.module('bowlingJackpotApp.controllers')
 
           },
 
-          function error() {
+          function error(e) {
             
             $scope.showSpinner = false;
+
+            if(e.status === 400) 
+            {
+              alert("Email has already been taken!")
+            }
+
+            else {
+              alert("Network error! Please refresh the page!");
+            }
 
           }
         )
