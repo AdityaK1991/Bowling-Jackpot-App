@@ -50,6 +50,12 @@
   </div> -->
 
 
+
+
+
+
+
+
   <div class="panel panel-success">
     <div class="panel-heading"><strong>List all Leagues</strong></div>
 
@@ -81,100 +87,140 @@
 
       </div>
 
-      <div class="panel-body">        
-        <!-- <table class="table table-striped">
-        <th>ID</th>
-        <th>League Name</th>
-           <tr ng-repeat="l in leagues | filter:lId">
-            <td>{{l.id}}</td>
-            <td>{{l.name}}</td>  
-           </tr>
-        </table> -->
+      <div class="panel-body">   
 
-        <div class="list-group-item" ng-click="toggleDetails($index, l)" ng-repeat="l in leagues">
-        {{l.id}}  {{l.name}}
+      <div class="panel-group">     
+
+        <div class="panel list-group-item" style="background-color:#F7F7F7"ng-click="toggleDetails($index, l)" ng-repeat="l in leagues" data-toggle="collapse" data-target="#child">
+          <div class="text-right">
+            <i ng-hide="activePosition==$index" class="glyphicon glyphicon-plus"></i>
+            <i ng-show="activePosition==$index" class="glyphicon glyphicon-minus"></i>
+          </div>
+          <div class="row">
+            <div class="col-md-5"><strong>{{l.id}}</strong></div>  
+            <div class="col-md-5"><span class="pull-center"><strong>{{l.name}}</strong></span></div>
+          </div>
         
-           <div class="list-group-item" ng-show="activePosition == $index" ng-click="$event.stopPropagation()">
+           <div class="panel-body list-group-item collapse" id="child" ng-show="activePosition == $index" ng-click="$event.stopPropagation()">
 
-            <p>Select Bowler ID:</p>
-             <select ng-model="selectBowler">
-              <option ng-repeat="b in bowlers" value="{{b.id}}">
-              {{b.id}}
-              </option>
-             </select>
-
-             <span class="list-group-btn">
-              <button ng-click="addBowlerToLeague(selectBowler, l)" class="btn btn-success">Add</button>
-             </span>
-
-              <button ng-click="listBowlersInLeague(l)" class="btn btn-success">List Bowlers</button>
-              <table class="table table-striped">
-              <th>Bowler ID</th>
-              <th>Bowler Name</th>
-                 <tr ng-repeat="lb in leagueBowlers">
-                  <td>{{lb.id}}</td>
-                  <td>{{lb.name}}</td>  
-                 </tr>
-              </table>
-
-
-              <button ng-click="listLotteriesForLeague(l)" class="btn btn-success">List Lotteries</button>
-              
-              <div class="input-group">
-              <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                <input class="form-control input" ng-model="lyId" placeholder="Lottery ID or Lottery Name" required="required" maxlength="60" type="text">
+            <div class="panel panel-success">
+              <div class="panel-heading">
+                <strong>Add Bowler to League</strong>
               </div>
+
+              <div class="panel-body">
+                <strong>Bowler ID:</strong>
+              <select ng-model="selectBowler">
+                <option ng-repeat="b in bowlers" value="{{b.id}}">
+                {{b.id}}
+                </option>
+                </select>
+                <span class="list-group-btn">
+                <button ng-click="addBowlerToLeague(selectBowler, l)" class="btn btn-success" ng-disabled="selectBowler==null">Add</button>
+               </span>
+
+
+              <table class="table table-striped" ng-hide="leagueBowlers.length == 0">
+               <th>Bowler ID</th>
+               <th>Bowler Name</th>
+               <tr ng-repeat="lb in leagueBowlers">
+                <td>{{lb.id}}</td>
+                <td>{{lb.name}}</td>  
+               </tr>
+              </table>
+
+              </div>
+
+            </div>
+
+             
+
+            <div class="panel panel-success">
+              <div class="panel-heading">
+               <strong>Buy Ticket for a Bowler</strong>
+               </div>
+
+               <div class="panel-body">
+                 <strong>Bowler ID:</strong>
+                 <select ng-model="selectB">
+                  <option ng-repeat="lb in leagueBowlers" value="{{lb.id}}">
+                  {{lb.id}}
+                  </option>
+                 </select>
+              
+                 <strong>Lottery ID:</strong>
+                 <select ng-model="selectLottery">
+                  <option ng-repeat="lottery in lotteries" value="{{lottery.id}}">
+                  {{lottery.id}}
+                  </option>
+                 </select>
+               
+                <button ng-click="buyTicketForBowler(l, selectLottery, selectB)" class="btn btn-success" ng-disabled="selectB==null || selectLottery==null">Buy Ticket</button>
+
+
+
+                <table class="table table-striped" ng-hide="tickets.length==0">
+                <th>Lottery ID</th>
+                <th>Bowler ID</th>
+                <th>Price</th>
+                <th>Winner</th>
+                   <tr ng-repeat="ticket in tickets">
+                    <td>{{ticket.lottery_id}}</td>
+                    <td>{{ticket.bowler_id}}</td>
+                    <td>{{ticket.price}}</td>     
+                    <td>{{ticket.is_winner}}</td>  
+                   </tr>
+                </table>
+
+
+
+               </div>
+
+            </div>
+              
               
 
-              <p>Bowler ID:</p>
-             <select ng-model="selectBowler">
-              <option ng-repeat="lb in leagueBowlers" value="{{lb.id}}">
-              {{lb.id}}
-              </option>
-             </select>
+            <div class="panel panel-success">
+              <div class="panel-heading">
+               <strong>List Lotteries</strong>
+               </div>
+
+               <div class="panel-body">
+              
+                 <div class="input-group">
+                  <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+                    <input class="form-control input" ng-model="lyId" placeholder="Lottery ID or Lottery Name" required="required" maxlength="60" type="text">
+                 </div>
 
 
-              <p>Lottery ID:</p>
-             <select ng-model="selectLottery">
-              <option ng-repeat="lottery in lotteries" value="{{lottery.id}}">
-              {{lottery.id}}
-              </option>
-             </select>
-
-              <table class="table table-striped">
-              <th>Lottery ID</th>
-              <th>League ID</th>
-              <th>Balance</th>
-              <th>Payout</th>
-                 <tr ng-repeat="lottery in lotteries">
-                  <td>{{lottery.id}}</td>
-                  <td>{{lottery.league_id}}</td>
-                  <td>{{lottery.balance}}</td>     
-                  <td>{{lottery.payout}}</td>  
-                 </tr>
-              </table>
-
-              <button ng-click="buyTicketForBowler(l, selectLottery, selectBowler)" class="btn btn-success">Buy Ticket</button>
-
-              <button ng-click="listTicketsForJackpot(l, selectLottery)" class="btn btn-success">List Tickets</button>
+                <table class="table table-striped" ng-hide="lotteries.length == 0">
+                <th>Lottery ID</th>
+                <th>Balance</th>
+                <th>Pin Count</th>
+                <th>Payout</th>
+                   <tr ng-repeat="lottery in lotteries">
+                    <td>{{lottery.id}}</td>
+                    <td>{{lottery.balance}}</td> 
+                    <td>{{lottery.pin_count}}</td>    
+                    <td>{{lottery.payout}}</td>  
+                   </tr>
+                </table>
 
 
-              <table class="table table-striped">
-              <th>Lottery ID</th>
-              <th>Bowler ID</th>
-              <th>Price</th>
-              <th>Winner</th>
-                 <tr ng-repeat="ticket in tickets">
-                  <td>{{ticket.lottery_id}}</td>
-                  <td>{{ticket.bowler_id}}</td>
-                  <td>{{ticket.price}}</td>     
-                  <td>{{ticket.winner}}</td>  
-                 </tr>
-              </table>
+               </div>
 
+            </div>
+              
 
-              <button ng-click="drawTicket(l, selectLottery)" class="btn btn-success">DRAW TICKET</button>
+              <strong>Lottery ID:</strong>
+                <select ng-model="selectLotteryWinner">
+                  <option ng-repeat="lottery in lotteries" value="{{lottery.id}}">
+                  {{lottery.id}}
+                  </option>
+                </select>
 
+              <button ng-click="drawTicket(l, selectLotteryWinner)" class="btn btn-success" ng-disabled="selectLotteryWinner==null || tickets==null">DRAW TICKET</button>
+              <p>{{winners.bowler_id}}
               <div class="col-md-6">
               <form class="form" ng-submit="pinCount(l, selectLottery)" accept-charset="UTF-8">
                <div class="input-group">
@@ -187,53 +233,15 @@
               </div>
 
 
-              <table class="table table-striped">
-              <th>Lottery ID</th>
-              <th>Bowler ID</th>
-              <th>Pin Count</th>
-              <th>Payout</th>
-                 <tr ng-repeat="winner in winners">
-                  <td>{{winner.lottery_id}}</td>
-                  <td>{{winner.bowler_id}}</td>
-                  <td>{{winner.pin_count}}</td>     
-                  <td>{{winner.payout}}</td>  
-                 </tr>
-              </table>
+             
 
             </div>
 
     </div>
 
   </div>
-
-
-
-  <!-- <div class="panel panel-success">
-    <div class="panel-heading"><strong>Add a Bowler to a League</strong></div>
-      <div class="panel-body">      
-        <form class="form" ng-submit="searchLeague()" accept-charset="UTF-8">
-         <div class="input-group">
-          <input class="form-control" ng-model="ladd" placeholder="Bowler ID" required="required" maxlength="60" type="text">
-           <span class="input-group-btn">
-           <button type="submit" class="btn btn-success">Add</button>
-           </span>
-         </div>
-       </form>
-       <span style="color:red"ng-show="bowlerNotFound">No Bowler found!</span> 
-       <p> {{bowler}} </p>
-      </div>
-  </div> -->
-
-
-  <!-- <div class="panel panel-success">
-    <div class="panel-heading"><strong>List all the Bowlers in a League</strong></div>
-      <div class="panel-body">  
-        <form class="form" ng-submit="listBowlersLeague()" accept-charset="UTF-8">
-           <li ng-repeat="b in bowlers"> {{b}} </li>
-           <button type="submit" class="btn btn-success" >Search All</button>
-        </form>
-    </div>
-  </div> -->
+  
+  </div>
 
 
  </div>
