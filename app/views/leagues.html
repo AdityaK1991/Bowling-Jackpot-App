@@ -91,7 +91,7 @@
            </tr>
         </table> -->
 
-        <div class="list-group-item" ng-click="toggleDetails($index)" ng-repeat="l in leagues">
+        <div class="list-group-item" ng-click="toggleDetails($index, l)" ng-repeat="l in leagues">
         {{l.id}}  {{l.name}}
         
            <div class="list-group-item" ng-show="activePosition == $index" ng-click="$event.stopPropagation()">

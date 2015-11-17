@@ -231,9 +231,10 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
-    $scope.toggleDetails = function($index) {
+    $scope.toggleDetails = function($index, lId) {
 
       $scope.activePosition = $scope.activePosition == $index ? -1 : $index;
+       $scope.listBowlersInLeague(lId);
     }
 
 
