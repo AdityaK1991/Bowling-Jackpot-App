@@ -10,7 +10,6 @@
  */
 angular
   .module('bowlingJackpotApp', [
-    'ngAnimate',
     'ngCookies',
     'ngRoute',
     'ngResource',
@@ -34,10 +33,6 @@ angular
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
       })
-      // .when('/home', {
-      //   templateUrl: 'views/home.html',
-      //   controller: 'HomeCtrl'
-      // })
       .when('/forgotPassword', {
         templateUrl: 'views/forgotPassword.html',
         controller: 'ForgotPasswordCtrl'

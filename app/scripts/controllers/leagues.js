@@ -305,6 +305,9 @@ angular.module('bowlingJackpotApp.controllers')
             {
               alert("Unauthorized!")
             }
+             else if(e.status===400){
+              alert("No Tickets are available for this Lottery or you have to pick a winning Ticket first!")
+            }
             else if(e.status===404){
               alert("Please select League ID first!")
             }
