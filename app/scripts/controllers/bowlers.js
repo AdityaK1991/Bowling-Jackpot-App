@@ -2,33 +2,36 @@
   .controller('BowlersCtrl', function ($scope, BowlerServices, $http, $cookies, $location, $timeout) {
 
 
-      $scope.showSpinner = true;
+    $scope.showSpinner = true;
 
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
-      console.log($cookies.get('Token'));
+    var token = $cookies.get('Token');
 
-      
-        $scope.bowlers = BowlerServices.ListBowlers.query({},
-          
-          function success(){
-            $scope.showSpinner = false;
-          },
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + token;
+    console.log(token);
 
-          function error(e){
+      // called to populate Bowlers list 
+      $scope.bowlers = BowlerServices.ListBowlers.query({},
+        
+        function success(){
+          $scope.showSpinner = false;
+        },
 
-            $scope.showSpinner = false;
+        function error(e){
 
-            if(e.status === 401) 
-            {
-              alert("Unauthorized!")
-            }
+          $scope.showSpinner = false;
 
-            else {
-              alert("Network error! Please refresh the page!");
-            }
-          })
+          if(e.status === 401) 
+          {
+            alert("Unauthorized!")
+          }
+
+          else {
+            alert("Network error! Please refresh the page!");
+          }
+      })
 
 
+    // create a new Bowler
   	$scope.createBowler = function(){
 
       $scope.showSpinner = true;
@@ -84,20 +87,17 @@
     }
 
 
-		
+	
+  // get a Bowler
 	$scope.getBowler = function(){
 
       $scope.showSpinner = true;
       
       $scope.idpanel = true;
 
-    	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
-
     	$scope.bowler = BowlerServices.GetBowler.get({bowlerId : $scope.bId},
     		function success(){
-
           $scope.showSpinner = false;
-          //console.log(Object.keys($scope.bowler).length)
     			if($scope.bowler === {}) {
     				$scope.bowlerNotFound = true;
     			}
@@ -118,6 +118,7 @@
     		})
 
     }
+
 
 
   $timeout(function () {

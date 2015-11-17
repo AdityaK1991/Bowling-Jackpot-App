@@ -16,7 +16,9 @@ angular.module('bowlingJackpotApp.controllers', [])
 
           $cookies.put('Token', encodedLogin)
 
-          $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
+          var token = $cookies.get('Token');
+
+          $http.defaults.headers.common['Authorization'] = 'Basic ' + token;
 
        
           $timeout(function () {
@@ -39,7 +41,7 @@ angular.module('bowlingJackpotApp.controllers', [])
 
                     $scope.showSpinner=false;
 
-                    alert("Unauthorized!")
+                    alert("Username or Password is incorrect! Please try again!")
 
                   }
                 }

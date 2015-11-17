@@ -36,7 +36,6 @@ angular.module('bowlingJackpotApp.services')
 	)
 
 
-
-
 	return factory;
+  
 })

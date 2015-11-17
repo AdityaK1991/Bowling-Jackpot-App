@@ -44,7 +44,7 @@
      <div class="panel-body">   
 
 
-        <div class="panel list-group-item" style="background-color:#deeff5"ng-click="toggleDetails($index, l)" ng-repeat="l in leagues" data-toggle="collapse" data-target="#child">
+        <div class="panel list-group-item" style="background-color:#deeff5"ng-click="toggleDetails($index, l)" ng-repeat="l in leagues | filter:lId" data-toggle="collapse" data-target="#child">
           <div class="text-right">
             <i ng-hide="activePosition==$index" class="glyphicon glyphicon-plus"></i>
             <i ng-show="activePosition==$index" class="glyphicon glyphicon-minus"></i>
@@ -105,6 +105,7 @@
                  </select>
                
                 <button ng-click="buyTicketForBowler(l, selectLottery, selectB)" class="btn btn-success" ng-disabled="selectB==null || selectLottery==null">Buy Ticket</button>
+                <a class="button pull-right" ng-click="refreshTicketsList(l, selectLottery)"><i class="glyphicon glyphicon-refresh"></i></a>
                 <table class="table table-striped" ng-hide="tickets.length==0">
                 <th>Lottery ID</th>
                 <th>Bowler ID</th>
@@ -137,7 +138,7 @@
                   <th>Balance</th>
                   <th>Pin Count</th>
                   <th>Payout</th>
-                     <tr ng-repeat="lottery in lotteries">
+                     <tr ng-repeat="lottery in lotteries | filter:lyId">
                       <td>{{lottery.id}}</td>
                       <td>{{lottery.balance}}</td> 
                       <td>{{lottery.pin_count}}</td>    

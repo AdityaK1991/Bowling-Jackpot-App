@@ -4,7 +4,7 @@ angular.module('bowlingJackpotApp.services')
 
 	 var factory = {};
 
-	var baseUrl = 'http://bowling-api.nextcapital.com';
+	 var baseUrl = 'http://bowling-api.nextcapital.com';
 
 	 factory.CreateLeague = $resource(
   		baseUrl + '/api/leagues', 
@@ -122,4 +122,5 @@ angular.module('bowlingJackpotApp.services')
 
 
 	return factory;
+  
 })

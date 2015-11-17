@@ -1,15 +1,17 @@
 angular.module('bowlingJackpotApp.controllers')
   .controller('LeaguesCtrl', function (LeagueServices, BowlerServices, $scope, $cookies, $location, $http, $timeout) {
     
-  $scope.showSpinner = true;
+    $scope.showSpinner = true;
 
+    var token = $cookies.get('Token');
 
-   $http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
-   console.log($cookies.get('Token'));
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + token;
+    console.log(token);
 
   
-  $timeout(function () {
+    $timeout(function () {
 
+      // called to populate Leagues list 
       $scope.leagues = LeagueServices.ListLeagues.query({},
         
         function success(){
@@ -33,7 +35,7 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
-      //Called to populate Bowlers list during League selection
+      // called to populate Bowlers list during League selection
      $scope.bowlers = BowlerServices.ListBowlers.query({},
         
         function success(){
@@ -61,7 +63,7 @@ angular.module('bowlingJackpotApp.controllers')
     
 
 
-
+    // create a new League
     $scope.createLeague = function(lId){
 
       $scope.showSpinner = true;
@@ -111,7 +113,7 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
-
+    // add existing Bowler to the current League
     $scope.addBowlerToLeague = function(bId, lId){
 
       console.log(bId)
@@ -140,7 +142,7 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
-
+    // list all the Bowlers in the current League
     $scope.listBowlersInLeague = function(lId){
 
       $scope.showSpinner = true;
@@ -186,6 +188,7 @@ angular.module('bowlingJackpotApp.controllers')
     }
 
 
+    // buy Ticket for a Bowler in the current League
     $scope.buyTicketForBowler = function(lId, loId, bId){
 
        $scope.showSpinner = true;
@@ -236,9 +239,30 @@ angular.module('bowlingJackpotApp.controllers')
 
     }
 
+    // update the Tickets list
+    $scope.refreshTicketsList = function(lId, loId){
+
+      $scope.showSpinner = true;
+       $scope.tickets = LeagueServices.ListTickets.get({leagueId:lId.id, lotteryId:loId},
+             function success(){
+               $scope.showSpinner = false;
+             },
+             function error(e){
+              $scope.showSpinner = false;
+              if(e.status==400){
+                alert("Please select a Lottery ID first!");
+              }
+              else {
+                alert("Network error! Please refresh the page!");
+              }
+              
+          })
+
+    }
 
 
 
+    // draw Ticket from the Lottery
     $scope.drawTicket = function(lId, loId){
 
       $scope.showSpinner = true;
@@ -247,7 +271,7 @@ angular.module('bowlingJackpotApp.controllers')
          function success(){
           $scope.showSpinner = false;
         },
-        function error(){
+         function error(){
           $scope.showSpinner = false;
            if(e.status === 401) {
                 alert("Unauthorized!")
@@ -266,6 +290,7 @@ angular.module('bowlingJackpotApp.controllers')
 
 
 
+    // update or change the Pin count
     $scope.pinCount = function(lId, loId){
       $scope.showSpinner = true;
 
@@ -305,7 +330,6 @@ angular.module('bowlingJackpotApp.controllers')
 
       }
     }, 1000)
-
 
 
 
