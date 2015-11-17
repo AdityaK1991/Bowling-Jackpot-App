@@ -23,7 +23,7 @@ angular.module('bowlingJackpotApp.controllers')
 
           if(e.status === 401) 
           {
-            alert("Unauthorized!")
+            //alert("Unauthorized!")
           }
         })
 
@@ -42,7 +42,7 @@ angular.module('bowlingJackpotApp.controllers')
 
           if(e.status === 401) 
           {
-            alert("Unauthorized!")
+           // alert("Unauthorized!")
           }
         })
 
