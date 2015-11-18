@@ -37,6 +37,6 @@
   },
   "scripts": {
     "test": "grunt test",
-	"start": "node app.js"
+	"start": "node server.js"
   }
 }
