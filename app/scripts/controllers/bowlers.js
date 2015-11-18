@@ -36,9 +36,6 @@
 
       $scope.showSpinner = true;
 
-
-    	$http.defaults.headers.common['Authorization'] = 'Basic ' + $cookies.get('Token');
-
     	var bowlerName = $scope.bname;
 
     	BowlerServices.CreateBowler.save({name: bowlerName},

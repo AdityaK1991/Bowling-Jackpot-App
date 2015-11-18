@@ -25,17 +25,9 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl'
-      })
-      .when('/forgotPassword', {
-        templateUrl: 'views/forgotPassword.html',
-        controller: 'ForgotPasswordCtrl'
       })
       .when('/leagues', {
         templateUrl: 'views/leagues.html',
@@ -44,10 +36,6 @@ angular
       .when('/bowlers', {
         templateUrl: 'views/bowlers.html',
         controller: 'BowlersCtrl'
-      })
-      .when('/lottery', {
-        templateUrl: 'views/lottery.html',
-        controller: 'LotteryCtrl'
       })
       .otherwise({
         redirectTo: '/'
