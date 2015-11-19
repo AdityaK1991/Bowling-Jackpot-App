@@ -134,6 +134,21 @@ module.exports = function (grunt) {
       }
     },
 
+    // Configuration to be run (and then tested).
+    buildcontrol: {
+      options: {
+          dir: 'dist',
+          commit: true,
+          push: true,
+          message: 'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'
+      },
+      heroku: {
+          options: {
+              remote: 'git@heroku.com:aditya-bowling-jackpot-app.git',
+              branch: 'master'
+          }
+      }
+   },
     // Empties folders to start fresh
     clean: {
       dist: {
@@ -435,6 +450,9 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin'
   ]);
+
+  grunt.registerTask('deploy', ['buildcontrol']);
+
 
   grunt.registerTask('default', [
     'newer:jshint',
