@@ -1,6 +1,6 @@
-angular.module('bowlingJackpotApp.services')
+angular.module('bowlingJackpotApp')
 
-  .factory('LeagueServices', function($resource) {
+  .factory('LeagueServices', ['$resource', function($resource) {
 
 	 var factory = {};
 
@@ -123,4 +123,4 @@ angular.module('bowlingJackpotApp.services')
 
 	return factory;
   
-})
+}])

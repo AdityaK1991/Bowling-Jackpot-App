@@ -1,5 +1,6 @@
-angular.module('bowlingJackpotApp.controllers')
-  .controller('LeaguesCtrl', function (LeagueServices, BowlerServices, $scope, $cookies, $location, $http, $timeout) {
+angular.module('bowlingJackpotApp')
+  .controller('LeaguesCtrl', ['LeagueServices', 'BowlerServices', '$scope', '$cookies', '$location', '$http', '$timeout',  
+    function(LeagueServices, BowlerServices, $scope, $cookies, $location, $http, $timeout) {
     
     $scope.showSpinner = true;
 
@@ -343,4 +344,4 @@ angular.module('bowlingJackpotApp.controllers')
     }
 
 
-  })
+  }])

@@ -1,6 +1,6 @@
-angular.module('bowlingJackpotApp.services', ['ngResource'])
+angular.module('bowlingJackpotApp')
 
-  .factory('LoginServices', function($resource) {
+  .factory('LoginServices', ['$resource', function($resource) {
 
   	var factory = {};
 
@@ -30,7 +30,7 @@ angular.module('bowlingJackpotApp.services', ['ngResource'])
 
   	return factory;
 
-  })
+  }])
 
 
 

@@ -1,5 +1,5 @@
-angular.module('bowlingJackpotApp.controllers')
-  .controller('RegisterCtrl', ['$scope', '$location', 'LoginServices', function ($scope, $location, LoginServices) {
+angular.module('bowlingJackpotApp')
+  .controller('RegisterCtrl', ['$scope', '$location', 'LoginServices', function($scope, $location, LoginServices) {
    
    $scope.submitRegister = function(){
 

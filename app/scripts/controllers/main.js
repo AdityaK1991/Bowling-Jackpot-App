@@ -1,5 +1,5 @@
 
-angular.module('bowlingJackpotApp.controllers', [])
+angular.module('bowlingJackpotApp')
   .controller('MainCtrl', ['$scope', '$location', '$http','LoginServices', '$timeout', '$cookies', 
     function($scope, $location, $http, LoginServices, $timeout, $cookies) {
    
